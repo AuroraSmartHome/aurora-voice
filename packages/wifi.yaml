@@ -6,14 +6,6 @@ text_sensor:
     # entity_category: "diagnostic"
     ip_address: 
       name: "IP Address"
-      address_0:
-        name: "IP Address 1"
-      address_1:
-        name: "IP Address 2"
-      address_2:
-        name: "IP Address 3"
-      address_3:
-        name: "IP Address 4"
     ssid:
       name: "SSID"
 
