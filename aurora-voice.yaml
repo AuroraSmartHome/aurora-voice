@@ -8,7 +8,7 @@ substitutions:
   esp32_board: esp32-s3-devkitc-1
 
 dashboard_import:
-  package_import_url: github://aurorasmarthome/aurora-voice/aurora-voice.yaml@main
+  package_import_url: github://AuroraSmartHome/aurora-voice/aurora-voice.yaml@main
   import_full_config: false
 
 packages:
