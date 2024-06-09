@@ -5,6 +5,7 @@ binary_sensor:
     pin: GPIO9
     icon: "mdi:voice"
     device_class: sound
+    internal: true
     on_press: 
       then:
         - lambda: id(aurora_voice).set_use_wake_word(false);
