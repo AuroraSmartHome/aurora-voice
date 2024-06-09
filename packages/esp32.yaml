@@ -1,0 +1,5 @@
+esp32:
+  board: ${esp32_board}
+  framework:
+    type: esp-idf
+    version: recommended

@@ -1,0 +1,52 @@
+switch:
+  - id: use_wake_word
+    name: Use wake word
+    platform: template
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+    on_turn_on:
+      - lambda: id(aurora_voice).set_use_wake_word(true);
+      # - micro_wake_word.start
+      - light.turn_on: 
+          id: va_listener
+          brightness: 100%
+          red: 0%
+          green: 100%
+          blue: 0%
+      - if:
+          condition:
+            not:
+              - voice_assistant.is_running
+          then:
+            - logger.log: "VA START use_wake_word.on_turn_on"
+            - voice_assistant.start_continuous
+    on_turn_off:
+      - lambda: id(aurora_voice).set_use_wake_word(false);
+      - voice_assistant.stop
+      # - micro_wake_word.stop
+      - light.turn_on: 
+          id: va_listener
+          brightness: 100%
+          red: 100%
+          green: 0%
+          blue: 0%
+  - id: mute_switch_real
+    name: "Mute Speaker (internal)"
+    platform: gpio
+    pin: GPIO47
+    entity_category: config
+    internal: true
+    inverted: true
+  - id: mute_switch
+    name: "Mute Speaker"
+    platform: template
+    restore_mode: RESTORE_DEFAULT_OFF
+    turn_on_action: 
+      then:
+        - switch.turn_on: mute_switch_real
+        - lambda: id(mute_switch).publish_state(true);
+    turn_off_action: 
+      then:
+        - switch.turn_off: mute_switch_real
+        - lambda: id(mute_switch).publish_state(false);

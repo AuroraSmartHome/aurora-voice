@@ -1,0 +1,49 @@
+output: 
+  - id: status_light_brightness
+    platform: template
+    type: float
+    min_power: 0.10
+    max_power: 1.0
+    write_action:
+      - if:
+          condition:
+            - light.is_on: status_segment_1
+          then:
+            - light.control:
+                id: status_segment_1
+                brightness: !lambda return state;
+      - if:
+          condition:
+            - light.is_on: status_segment_2
+          then:
+            - light.control:
+                id: status_segment_2
+                brightness: !lambda return state;
+      - if:
+          condition:
+            - light.is_on: status_segment_3
+          then:
+            - light.control:
+                id: status_segment_3
+                brightness: !lambda return state;
+      - if:
+          condition:
+            - light.is_on: status_segment_4
+          then:
+            - light.control:
+                id: status_segment_4
+                brightness: !lambda return state;
+      - if:
+          condition:
+            - light.is_on: status_segment_5
+          then:
+            - light.control:
+                id: status_segment_5
+                brightness: !lambda return state;
+      - if:
+          condition:
+            - light.is_on: status_segment_6
+          then:
+            - light.control:
+                id: status_segment_6
+                brightness: !lambda return state;

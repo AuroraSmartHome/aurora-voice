@@ -1,0 +1,120 @@
+voice_assistant:
+  id: aurora_voice
+  microphone: inmp441_mic
+  use_wake_word: true
+  noise_suppression_level: 2
+  auto_gain: 31dBFS
+  volume_multiplier: 2.0
+  speaker: max98357a_speaker
+  on_client_connected:
+    - logger.log: "Client Connected"
+    - if:
+        condition:
+          - switch.is_on: use_wake_word
+        then:
+          - logger.log: "VA START va.on_client_connected"
+          - voice_assistant.start_continuous
+    - if:
+        condition:
+          - voice_assistant.is_running
+        then:
+          - text_sensor.template.publish:
+              id: va_status
+              state: "Running"
+          - light.turn_on:
+              id: va_listener
+              brightness: 100%
+              red: 0%
+              green: 100%
+              blue: 0%
+        else:
+          - text_sensor.template.publish:
+              id: va_status
+              state: "Not Running"
+          - light.turn_on:
+              id: va_listener
+              brightness: 100%
+              red: 100%
+              green: 0%
+              blue: 0%
+    - if:
+        condition:
+          switch.is_on: mute_switch
+        then:
+          - logger.log: "Turn ON mute_switch_real"
+          - switch.turn_on: mute_switch_real
+        else:
+          - logger.log: "Turn OFF mute_switch_real"
+          - switch.turn_off: mute_switch_real
+    - light.turn_off:
+        id: va_feedback
+  on_client_disconnected:
+    - logger.log: "Client Disconnected"
+    - voice_assistant.stop
+    - text_sensor.template.publish:
+        id: va_status
+        state: "Not Running"
+    - light.turn_on:
+        id: va_listener
+        brightness: 100%
+        red: 100%
+        green: 0%
+        blue: 0%
+  on_listening:
+    - text_sensor.template.publish:
+        id: va_status
+        state: "Listening"
+    - light.turn_on:
+        id: va_feedback
+        effect: "aurora"
+        brightness: 100%
+    - light.turn_on:
+        id: va_listener
+        red: 0%
+        green: 47%
+        blue: 49%
+  on_tts_start:
+    - logger.log: "TTS Start"
+    - if:
+        condition:
+          - lambda: |-
+              std::string msg = x;
+              std::string sorry = ("sorry");
+              std::string Sorry = ("Sorry");
+              if (msg.find(Sorry) == std::string::npos && msg.find(sorry) == std::string::npos) {
+                  return true;
+              }
+              return false;
+        then:
+          - light.control: 
+              id: va_feedback
+              effect: "feedback_success"
+        else:
+          - light.control: 
+              id: va_feedback
+              effect: "feedback_error"
+    - text_sensor.template.publish:
+        id: va_status
+        state: "Speaking"
+  on_tts_stream_end: 
+    - logger.log: "TTS Stream End"
+    - text_sensor.template.publish:
+        id: va_status
+        state: "Finished"
+    - light.control:
+        id: va_listener
+        red: 0%
+        green: 100%
+        blue: 0%
+    - light.turn_off:
+        id: va_feedback
+  on_error: 
+    - logger.log: "Error"
+    - text_sensor.template.publish:
+        id: va_status
+        state: !lambda 'if (id(use_wake_word).state) { return "Error"; } else { return "Not Listening"; }'
+  on_idle:
+    - logger.log: "Idle"
+    - text_sensor.template.publish:
+        id: va_status
+        state: "Idle"

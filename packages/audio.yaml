@@ -1,0 +1,24 @@
+i2s_audio:
+  - id: inmp441 # microphone
+    i2s_lrclk_pin: GPIO38 # WS Pin
+    i2s_bclk_pin: GPIO6 # SCK Pin
+  - id: max98357a # dac
+    i2s_lrclk_pin: GPIO18 # LRC Pin
+    i2s_bclk_pin: GPIO16 # BCLK Pin
+
+microphone:
+  - id: inmp441_mic
+    platform: i2s_audio
+    i2s_audio_id: inmp441
+    adc_type: external
+    i2s_din_pin: GPIO17 #SD
+    pdm: false
+    channel: left
+
+speaker:
+  - id: max98357a_speaker
+    platform: i2s_audio
+    i2s_audio_id: max98357a
+    dac_type: external
+    i2s_dout_pin: GPIO21 # DIN Pin
+    mode: mono

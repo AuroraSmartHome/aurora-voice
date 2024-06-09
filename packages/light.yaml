@@ -1,0 +1,228 @@
+light:
+  # Aurora Status Light
+  - id: status_light
+    name: "Status Light"
+    platform: monochromatic
+    output: status_light_brightness
+    restore_mode: RESTORE_AND_ON
+
+  - id: status_light_real
+    platform: esp32_rmt_led_strip
+    chipset: SK6812
+    pin: GPIO12
+    num_leds: 24
+    rgb_order: GRB
+    rmt_channel: 0
+    internal: true    
+
+  - id: status_segment_1
+    name: "Status Light 1"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 0
+        to: 3
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_1
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+  - id: status_segment_2
+    name: "Status Light 2"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 4
+        to: 7
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_2
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+  - id: status_segment_3
+    name: "Status Light 3"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 8
+        to: 11
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_3
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+  - id: status_segment_4
+    name: "Status Light 4"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 12
+        to: 15
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_4
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+  - id: status_segment_5
+    name: "Status Light 5"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 16
+        to: 19
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_5
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+  - id: status_segment_6
+    name: "Status Light 6"
+    platform: partition
+    segments:
+      - id: status_light_real
+        from: 20
+        to: 23
+    restore_mode: RESTORE_DEFAULT_OFF
+    on_turn_on: 
+      then:
+        - light.control: 
+            id: status_segment_6
+            brightness: !lambda return (id(status_light).remote_values.get_brightness() / 1.0) * (1.0 - 0.10) + 0.10;
+
+  # Voice Assistant Status & Feedback
+  - id: va_light
+    name: "VA Status"
+    platform: esp32_rmt_led_strip
+    chipset: SK6812
+    pin: GPIO4
+    num_leds: 12
+    rgb_order: GRB
+    rmt_channel: 1
+    internal: true
+  
+  ## Feedback Light
+  - id: va_feedback
+    name: va_feedback
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 11
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: true
+    effects: 
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 64%
+              green: 84%
+              blue: 13%
+              num_leds: 3
+              gradient: true
+            - red: 74%
+              green: 93%
+              blue: 32%
+              num_leds: 3
+              gradient: true
+            - red: 83%
+              green: 96%
+              blue: 54%
+              num_leds: 3
+              gradient: true
+            - red: 93%
+              green: 99%
+              blue: 72%
+              num_leds: 3
+              gradient: true
+      - addressable_color_wipe: 
+          name: "feedback_error"
+          add_led_interval: 100ms
+          colors:
+            - red: 99%
+              green: 28%
+              blue: 28%
+              num_leds: 3
+              gradient: true
+            - red: 99%
+              green: 35%
+              blue: 35%
+              num_leds: 3
+              gradient: true
+            - red: 99%
+              green: 53%
+              blue: 53%
+              num_leds: 3
+              gradient: true
+            - red: 100%
+              green: 66%
+              blue: 66%
+              num_leds: 3
+              gradient: true
+      - addressable_color_wipe: 
+          name: "feedback_success"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+      - addressable_color_wipe:
+          name: "spin"
+          colors:
+            - red: 0%
+              green: 0%
+              blue: 100%
+              num_leds: 2
+            - red: 0%
+              green: 0%
+              blue: 90%
+              num_leds: 2
+            - red: 0%
+              green: 0%
+              blue: 80%
+              num_leds: 2
+            - red: 0%
+              green: 0%
+              blue: 70%
+              num_leds: 2
+            - red: 0%
+              green: 0%
+              blue: 60%
+              num_leds: 2
+            - red: 0%
+              green: 0%
+              blue: 50%
+              num_leds: 1
+  
+  ## Microphone Status Light
+  - id: va_listener
+    name: va_listener
+    platform: partition
+    segments:
+      - id: va_light
+        from: 0 
+        to: 0
+    restore_mode: ALWAYS_OFF
+    internal: true

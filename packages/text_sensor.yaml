@@ -1,0 +1,6 @@
+text_sensor:
+  - id: "va_status"
+    name: "Voice Assistant Status"
+    platform: template
+    icon: "mdi:information"
+    entity_category: "diagnostic"

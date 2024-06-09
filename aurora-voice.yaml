@@ -1,0 +1,26 @@
+substitutions:
+  name: "aurora-voice-v1"
+  friendly_name: "AuroraVoice v1"
+  name_add_mac_suffix: "true"
+  project_name: "aurora.voice"
+  project_version: "1.0"
+  logger_level: "ERROR"
+  esp32_board: esp32-s3-devkitc-1
+
+dashboard_import:
+  package_import_url: github://aurorasmarthome/aurora-voice/aurora-voice.yaml@main
+  import_full_config: false
+
+packages:
+  esp32: !include packages/esp32.yaml
+  esphome: !include packages/esphome.yaml
+  logger: !include packages/logger.yaml
+  light: !include packages/light.yaml
+  output: !include packages/output.yaml
+  audio: !include packages/audio.yaml
+  wifi: !include packages/wifi.yaml
+  switch: !include packages/switch.yaml
+  button: !include packages/button.yaml
+  text_sensor: !include packages/text_sensor.yaml
+  binary_sensor: !include packages/binary_sensor.yaml
+  voice_assistant: !include packages/voice_assistant.yaml

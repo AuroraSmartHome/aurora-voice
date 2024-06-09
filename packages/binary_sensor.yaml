@@ -1,0 +1,30 @@
+binary_sensor:
+  - id: va_activate
+    name: "Activate Voice Assistant"
+    platform: gpio
+    pin: GPIO9
+    icon: "mdi:voice"
+    device_class: sound
+    on_press: 
+      then:
+        - lambda: id(aurora_voice).set_use_wake_word(false);
+        - voice_assistant.stop
+        - delay: 50ms
+        - voice_assistant.start
+    on_release: 
+      then:
+        - delay: 1s
+        - logger.log: "Turning off VA"
+        - voice_assistant.stop
+        - if:
+            condition:
+              - switch.is_on: use_wake_word
+            then:
+              - logger.log: "Delay (1s)"
+              # - delay: 1s
+              - logger.log: "Turning on use wake word"
+              - lambda: id(aurora_voice).set_use_wake_word(true);
+              - logger.log: "Delay (1s)"
+              - delay: 1s
+              - logger.log: "Starting VA"
+              - voice_assistant.start_continuous
