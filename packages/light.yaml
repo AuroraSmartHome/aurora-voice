@@ -178,43 +178,16 @@ light:
               blue: 50%
               num_leds: 3
               gradient: true
-            - red: 0
+            - red: 0%
               green: 100%
               blue: 73%
               num_leds: 3
               gradient: true
-            - red: 0
+            - red: 0%
               green: 100%
               blue: 40%
               num_leds: 3
               gradient: true
-      - addressable_color_wipe:
-          name: "spin"
-          colors:
-            - red: 0%
-              green: 0%
-              blue: 100%
-              num_leds: 2
-            - red: 0%
-              green: 0%
-              blue: 90%
-              num_leds: 2
-            - red: 0%
-              green: 0%
-              blue: 80%
-              num_leds: 2
-            - red: 0%
-              green: 0%
-              blue: 70%
-              num_leds: 2
-            - red: 0%
-              green: 0%
-              blue: 60%
-              num_leds: 2
-            - red: 0%
-              green: 0%
-              blue: 50%
-              num_leds: 1
   
   ## Microphone Status Light
   - id: va_listener
