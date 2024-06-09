@@ -120,6 +120,30 @@ light:
           name: "aurora"
           add_led_interval: 100ms
           colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+      - addressable_color_wipe: 
+          name: "feedback_success"
+          add_led_interval: 100ms
+          colors:
             - red: 64%
               green: 84%
               blue: 13%
@@ -162,30 +186,6 @@ light:
             - red: 100%
               green: 66%
               blue: 66%
-              num_leds: 3
-              gradient: true
-      - addressable_color_wipe: 
-          name: "feedback_success"
-          add_led_interval: 100ms
-          colors:
-            - red: 0%
-              green: 47%
-              blue: 49%
-              num_leds: 3
-              gradient: true
-            - red: 0%
-              green: 91%
-              blue: 50%
-              num_leds: 3
-              gradient: true
-            - red: 0%
-              green: 100%
-              blue: 73%
-              num_leds: 3
-              gradient: true
-            - red: 0%
-              green: 100%
-              blue: 40%
               num_leds: 3
               gradient: true
   
