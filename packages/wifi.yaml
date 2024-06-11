@@ -1,5 +1,8 @@
 wifi:
   ap:
+  on_connect:
+    - ble.disable:
+  
 
 text_sensor:
   - platform: wifi_info
@@ -9,13 +12,9 @@ text_sensor:
     ssid:
       name: "SSID"
 
-  # - platform: wifi_signal
-  #   name: "WiFi Signal"
-  #   entity_category: "diagnostic"
-  #   update_interval: 60s
-  #   filters:
-  #     - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-  #   unit_of_measurement: "Signal %"
+# Enable Improv
+esp32_improv:
+  authorizer: none
 
 # Enable the captive portal
 captive_portal:
