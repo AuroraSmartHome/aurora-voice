@@ -189,6 +189,391 @@ light:
               num_leds: 3
               gradient: true
   
+  - id: timer_feedback_1
+    name: timer_feedback_1
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 1
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+   
+  - id: timer_feedback_2
+    name: timer_feedback_2
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 2
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_3
+    name: timer_feedback_3
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 3
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_4
+    name: timer_feedback_4
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 4
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_5
+    name: timer_feedback_5
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 5
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_6
+    name: timer_feedback_6
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 6
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_7
+    name: timer_feedback_7
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 7
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+   
+  - id: timer_feedback_8
+    name: timer_feedback_8
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 8
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_9
+    name: timer_feedback_9
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 9
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_10
+    name: timer_feedback_10
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 10
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
+  - id: timer_feedback_11
+    name: timer_feedback_11
+    platform: partition
+    segments:
+      - id: va_light
+        from: 1
+        to: 11
+    restore_mode: RESTORE_DEFAULT_OFF
+    internal: True
+    effects:
+      - addressable_color_wipe: 
+          name: "aurora"
+          add_led_interval: 100ms
+          colors:
+            - red: 0%
+              green: 47%
+              blue: 49%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 91%
+              blue: 50%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 73%
+              num_leds: 3
+              gradient: true
+            - red: 0%
+              green: 100%
+              blue: 40%
+              num_leds: 3
+              gradient: true
+ 
   ## Microphone Status Light
   - id: va_listener
     name: va_listener

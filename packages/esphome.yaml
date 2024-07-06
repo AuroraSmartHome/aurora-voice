@@ -15,3 +15,9 @@ api:
 
 # Allow Over-The-Air updates
 ota:
+  platform: esphome
+
+# update:
+#   - platform: http_request
+#     name: Firmware Update
+#     source: https://raw.githubusercontent.com/AuroraSmartHome/aurora-voice/main/manifest.json
