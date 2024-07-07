@@ -24,3 +24,4 @@ packages:
   text_sensor: !include packages/text_sensor.yaml
   binary_sensor: !include packages/binary_sensor.yaml
   voice_assistant: !include packages/voice_assistant.yaml
+  file: !include packages/file.yaml

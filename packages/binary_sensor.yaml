@@ -6,26 +6,34 @@ binary_sensor:
     icon: "mdi:voice"
     device_class: sound
     internal: true
-    on_press: 
-      then:
-        - lambda: id(aurora_voice).set_use_wake_word(false);
-        - voice_assistant.stop
-        - delay: 50ms
-        - voice_assistant.start
+    on_press:
+      if:
+        condition:
+          switch.is_off: timer_ringing 
+        then:
+          - lambda: id(aurora_voice).set_use_wake_word(false);
+          - voice_assistant.stop
+          - delay: 50ms
+          - voice_assistant.start
     on_release: 
-      then:
-        - delay: 1s
-        - logger.log: "Turning off VA"
-        - voice_assistant.stop
-        - if:
-            condition:
-              - switch.is_on: use_wake_word
-            then:
-              - logger.log: "Delay (1s)"
-              # - delay: 1s
-              - logger.log: "Turning on use wake word"
-              - lambda: id(aurora_voice).set_use_wake_word(true);
-              - logger.log: "Delay (1s)"
-              - delay: 1s
-              - logger.log: "Starting VA"
-              - voice_assistant.start_continuous
+      if:
+        condition:
+          switch.is_off: timer_ringing 
+        then:
+          - delay: 1s
+          - logger.log: "Turning off VA"
+          - voice_assistant.stop
+          - if:
+              condition:
+                - switch.is_on: use_wake_word
+              then:
+                - logger.log: "Delay (1s)"
+                # - delay: 1s
+                - logger.log: "Turning on use wake word"
+                - lambda: id(aurora_voice).set_use_wake_word(true);
+                - logger.log: "Delay (1s)"
+                - delay: 1s
+                - logger.log: "Starting VA"
+                - voice_assistant.start_continuous
+        else: 
+          - switch.turn_off: timer_ringing

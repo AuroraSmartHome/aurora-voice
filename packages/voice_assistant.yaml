@@ -118,72 +118,29 @@ voice_assistant:
     - text_sensor.template.publish:
         id: va_status
         state: "Idle"
-  on_timer_started:
-    - logger.log: "Timer Start"
-  on_timer_tick:
-    - lambda: |-
-        id(set_active_timer).execute();
-        id(active_timer_segments) = static_cast<int>(ceil(id(active_timer).seconds_left / 11));
-    - lambda: |-
-        switch (id(active_timer_segments)) {
-          case 1:
-            id(timer_feedback_1).turn_on();
-            break;
-          case 2:
-            id(timer_feedback_2).turn_on();
-            break;
-          case 3:
-            id(timer_feedback_3).turn_on();
-            break;
-          case 4:    
-            id(timer_feedback_4).turn_on();
-            break;
-          case 5:
-            id(timer_feedback_5).turn_on();
-            break;
-          case 6:
-            id(timer_feedback_6).turn_on();
-            break;
-          case 7:
-            id(timer_feedback_7).turn_on();
-            break;
-          case 8: 
-            id(timer_feedback_8).turn_on();
-            break;
-          case 9:
-            id(timer_feedback_9).turn_on();
-            break;
-          case 10:
-            id(timer_feedback_10).turn_on();
-            break;
-          case 11:
-            id(timer_feedback_11).turn_on();
-            break;
-          default:
-            break;
-        }
   on_timer_finished:
-    - light.turn_off:
-        id: timer_feedback_11
-
-
-globals:
-  - id: active_timer
-    type: voice_assistant::Timer
-    restore_value: false
-  - id: active_timer_segments
-    type: int
-    restore_value: false
-
-script:
-  - id: set_active_timer
-    then:
-      - lambda: |
-          const auto timers = id(aurora_voice).get_timers();
-          auto output_timer = timers.begin()->second;
-          for (auto &iterable_timer : timers) {
-            if (iterable_timer.second.is_active && iterable_timer.second.seconds_left <= output_timer.seconds_left) {
-              output_timer = iterable_timer.second;
-            }
-          }
-          id(active_timer) = output_timer;
+    - voice_assistant.stop
+    - switch.turn_on: timer_ringing
+    - wait_until:
+        not:
+          microphone.is_capturing:
+    - light.turn_on:
+        id: va_feedback
+        brightness: 100%
+        effect: timer_end
+    - while:
+        condition:
+          switch.is_on: timer_ringing
+        then:
+          - lambda: id(max98357a_speaker).play(id(timer_finished), sizeof(id(timer_finished)));
+          - delay: 1s
+    - wait_until:
+        not:
+          speaker.is_playing:
+    - light.turn_off: va_feedback
+    - switch.turn_off: timer_ringing
+    - if:
+        condition:
+          switch.is_on: use_wake_word
+        then:
+          - voice_assistant.start_continuous:

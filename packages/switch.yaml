@@ -50,3 +50,12 @@ switch:
       then:
         - switch.turn_off: mute_switch_real
         - lambda: id(mute_switch).publish_state(false);
+  - id: timer_ringing
+    name: "Timer Ringing"
+    platform: template
+    optimistic: true
+    internal: true
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - delay: 15min
+      - switch.turn_off: timer_ringing

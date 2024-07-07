@@ -1,0 +1,12 @@
+external_components:
+  - source: github://jesserockz/esphome-components
+    components: [file]
+    refresh: 0s
+
+file:
+  - id: feedback_success
+    file: https://github.com/AuroraSmartHome/aurora-voice/raw/main/files/sounds/feedback_success.wav
+  - id: feedback_error
+    file: https://github.com/AuroraSmartHome/aurora-voice/raw/main/files/sounds/feedback_error.wav
+  - id: timer_finished
+    file: https://github.com/AuroraSmartHome/aurora-voice/raw/main/files/sounds/timer_finished.wav
